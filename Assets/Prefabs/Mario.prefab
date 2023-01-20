@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3655150217268942107}
   - component: {fileID: 5164416626375808683}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Normal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2747187478960657145}
   - component: {fileID: 3267274203359447002}
   - component: {fileID: 3912361519398600548}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Mario
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &3267274203359447002
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -166,6 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9efee5a019def94ba6f6c6663c786ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 8
+  maxJumpHeight: 5
+  maxJumpTime: 1
 --- !u!1 &5231155514448179516
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7007477921409365896}
   - component: {fileID: 6487593776283587014}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
