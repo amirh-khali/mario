@@ -1,9 +1,12 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
-    private Vector2 velocity;
+    private new Collider2D collider;
+
+    public Vector2 velocity;
     private float inputAxis;
 
     public float speed = 8f;
@@ -14,11 +17,30 @@ public class PlayerController : MonoBehaviour
 
     public bool grounded { get; private set; }
     public bool jumping { get; private set; }
+    public bool running => Mathf.Abs(velocity.x) > 0.25f || Mathf.Abs(inputAxis) > 0.25f;
+    public bool sliding => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0f && velocity.x > 0f);
+    public bool falling => velocity.y < 0f && !grounded;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
+    }
 
+    private void OnEnable()
+    {
+        _rigidbody.isKinematic = false;
+        collider.enabled = true;
+        velocity = Vector2.zero;
+        jumping = false;
+    }
+
+    private void OnDisable()
+    {
+        _rigidbody.isKinematic = true;
+        collider.enabled = false;
+        velocity = Vector2.zero;
+        jumping = false;
     }
 
     private void Update()
@@ -92,7 +114,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer != LayerMask.NameToLayer("PowerUp"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            // bounce off enemy head
+            if (transform.DotTest(collision.transform, Vector2.down))
+            {
+                velocity.y = jumpForce / 2f;
+                jumping = true;
+            }
+        }
+        else if (collision.gameObject.layer != LayerMask.NameToLayer("PowerUp"))
         {
             // stop vertical movement if mario bonks his head
             if (transform.DotTest(collision.transform, Vector2.up))

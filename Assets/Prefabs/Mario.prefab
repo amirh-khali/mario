@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3655150217268942107}
   - component: {fileID: 5164416626375808683}
+  - component: {fileID: 4647976465216653295}
+  - component: {fileID: 8082962994778258205}
   m_Layer: 3
   m_Name: Normal
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,6 +84,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4647976465216653295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876905480639106101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b906b21c539a5904ca9fbfcb28c77e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idle: {fileID: 21300000, guid: 8b4ce00e5e60d9f40bbe85d30f877b9b, type: 3}
+  jump: {fileID: 21300000, guid: 4ee94814189a834438523e8f7da0215d, type: 3}
+  slide: {fileID: 21300000, guid: 7ac9fad1c967cc84eac720b87c981217, type: 3}
+  run: {fileID: 8082962994778258205}
+--- !u!114 &8082962994778258205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876905480639106101}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dfddfc5cc4fe2645be047022e95495d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 1c66b2aca24451f47917beb33c28c4c6, type: 3}
+  - {fileID: 21300000, guid: 4a87f5c229c247e44a70f4272ae1e5b4, type: 3}
+  - {fileID: 21300000, guid: 5411187b91763344d96ca44f18fe3e84, type: 3}
+  framerate: 0.16666667
 --- !u!1 &2084335660760926326
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,9 +129,11 @@ GameObject:
   - component: {fileID: 2747187478960657145}
   - component: {fileID: 3267274203359447002}
   - component: {fileID: 3912361519398600548}
+  - component: {fileID: 2200943854529687679}
+  - component: {fileID: 7605866812218977906}
   m_Layer: 3
   m_Name: Mario
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,7 +170,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 05f74dad61d710a47829319d0dd5d0d2, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -169,6 +206,34 @@ MonoBehaviour:
   speed: 8
   maxJumpHeight: 5
   maxJumpTime: 1
+--- !u!114 &2200943854529687679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084335660760926326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2de48520fccbfa49a386108d7efcbb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallRenderer: {fileID: 4647976465216653295}
+  bigRenderer: {fileID: 1309514705010179986}
+--- !u!114 &7605866812218977906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084335660760926326}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d42ad9fadf166834f8f884dc2ba1b421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 5164416626375808683}
+  deadSprite: {fileID: 21300000, guid: 11851797b42e59c4db1edbc666ffc6bd, type: 3}
 --- !u!1 &5231155514448179516
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,9 +244,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7007477921409365896}
   - component: {fileID: 6487593776283587014}
+  - component: {fileID: 1309514705010179986}
+  - component: {fileID: 4446026972196607523}
   m_Layer: 3
   m_Name: Big
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,3 +318,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1309514705010179986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5231155514448179516}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b906b21c539a5904ca9fbfcb28c77e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idle: {fileID: 21300000, guid: e0d214cab847fb24d8024f467b67f23a, type: 3}
+  jump: {fileID: 21300000, guid: 8fad0f2dd0ab91242aed2ad743fef847, type: 3}
+  slide: {fileID: 21300000, guid: 76c36097e57a7a24895c1eda18ee88ff, type: 3}
+  run: {fileID: 4446026972196607523}
+--- !u!114 &4446026972196607523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5231155514448179516}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dfddfc5cc4fe2645be047022e95495d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 01b0d9ab42d8f354db3fe800803ccf4a, type: 3}
+  - {fileID: 21300000, guid: 731948224f298d940818d41d0b133b5f, type: 3}
+  - {fileID: 21300000, guid: c56a0d46559cc96458e573afec1b5388, type: 3}
+  framerate: 0.16666667
