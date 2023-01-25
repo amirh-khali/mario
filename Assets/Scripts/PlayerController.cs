@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    private new Camera camera;
     private Rigidbody2D _rigidbody;
     private new Collider2D collider;
 
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        camera = Camera.main;
         _rigidbody = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
     }
@@ -61,6 +63,11 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 position = _rigidbody.position;
         position += velocity * Time.deltaTime;
+
+        // clamp within the screen bounds
+        Vector2 leftEdge = camera.ScreenToWorldPoint(Vector2.zero);
+        Vector2 rightEdge = camera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        position.x = Mathf.Clamp(position.x, leftEdge.x + 0.5f, rightEdge.x - 0.5f);
 
         _rigidbody.MovePosition(position);
     }
