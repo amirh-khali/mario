@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public static int NumberOfStages = 2;
 
     public int stage { get; private set; }
     public int lives { get; private set; }
@@ -12,6 +13,11 @@ public class GameManager : MonoBehaviour
 
     public Text livesText;
     public Text coinsText;
+
+    public Image mainMenuBackground;
+    public GameObject startButton;
+    public GameObject livesBoard;
+    public GameObject coinsBoard;
 
     private void Awake()
     {
@@ -34,10 +40,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void StartGame()
     {
         Application.targetFrameRate = 60;
-
 
         NewGame();
     }
@@ -46,15 +51,25 @@ public class GameManager : MonoBehaviour
     {
         lives = 3;
         coins = 0;
+        UpdateUI();
 
         LoadLevel(1);
+
+        livesBoard.SetActive(true);
+        coinsBoard.SetActive(true);
+        startButton.SetActive(false);
+        mainMenuBackground.enabled = false;
     }
 
     public void GameOver()
     {
         // TODO: show game over screen
 
-        NewGame();
+        SceneManager.LoadScene("MainMenu");
+        livesBoard.SetActive(false);
+        coinsBoard.SetActive(false);
+        startButton.SetActive(true);
+        mainMenuBackground.enabled = true;
     }
 
     public void LoadLevel(int stage)
@@ -66,7 +81,10 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        LoadLevel(stage + 1);
+        if (stage < NumberOfStages)
+            LoadLevel(stage + 1);
+        else
+            GameOver();
     }
 
     public void ResetLevel(float delay)
@@ -77,6 +95,7 @@ public class GameManager : MonoBehaviour
     public void ResetLevel()
     {
         lives--;
+        UpdateUI();
 
         if (lives > 0)
         {
@@ -91,6 +110,7 @@ public class GameManager : MonoBehaviour
     public void AddCoin()
     {
         coins++;
+        UpdateUI();
 
         if (coins == 100)
         {
@@ -102,6 +122,7 @@ public class GameManager : MonoBehaviour
     public void AddLife()
     {
         lives++;
+        UpdateUI();
     }
 
     private void UpdateUI()
