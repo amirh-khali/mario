@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class GameManager : MonoBehaviour
     public int stage { get; private set; }
     public int lives { get; private set; }
     public int coins { get; private set; }
+
+    public Text livesText;
+    public Text coinsText;
 
     private void Awake()
     {
@@ -33,6 +37,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 60;
+
 
         NewGame();
     }
@@ -97,6 +102,12 @@ public class GameManager : MonoBehaviour
     public void AddLife()
     {
         lives++;
+    }
+
+    private void UpdateUI()
+    {
+        coinsText.text = coins.ToString();
+        livesText.text = lives.ToString();
     }
 
 }

@@ -5,8 +5,6 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     private Transform playerTransform;
-    public float leftBound = 0f;
-    public float rightBound = 100f;
 
     private void Awake()
     {
@@ -16,7 +14,7 @@ public class CameraController : MonoBehaviour
     private void LateUpdate()
     {
         Vector3 position = transform.position;
-        position.x = Mathf.Min(Mathf.Max(playerTransform.position.x, leftBound), rightBound);
+        position.x = Mathf.Max(playerTransform.position.x, 0f);
         transform.position = position;
     }
 }
