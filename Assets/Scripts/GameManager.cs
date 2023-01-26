@@ -13,11 +13,18 @@ public class GameManager : MonoBehaviour
 
     public Text livesText;
     public Text coinsText;
+    public Text totalCoin;
+    public Text highestLevel;
 
     public Image mainMenuBackground;
     public GameObject startButton;
     public GameObject livesBoard;
     public GameObject coinsBoard;
+
+    public AudioSource backgroundAudio;
+    public AudioSource missAudio;
+    public AudioSource gameOverAudio;
+    public AudioSource nextLevelAudio;
 
     private void Awake()
     {
@@ -40,6 +47,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        totalCoin.text = "Total Coin: " + PlayerPrefs.GetInt("total_coin", 0);
+        highestLevel.text = "Highest Level: " + PlayerPrefs.GetInt("highest_level", 0);
+    }
+
     public void StartGame()
     {
         Application.targetFrameRate = 60;
@@ -59,36 +72,53 @@ public class GameManager : MonoBehaviour
         coinsBoard.SetActive(true);
         startButton.SetActive(false);
         mainMenuBackground.enabled = false;
+        totalCoin.enabled = false;
+        highestLevel.enabled = false;
     }
 
     public void GameOver()
     {
-        // TODO: show game over screen
+        backgroundAudio.Stop();
+        gameOverAudio.Play();
 
-        SceneManager.LoadScene("MainMenu");
         livesBoard.SetActive(false);
         coinsBoard.SetActive(false);
         startButton.SetActive(true);
         mainMenuBackground.enabled = true;
+        totalCoin.enabled = true;
+        highestLevel.enabled = true;
+
+        totalCoin.text = "Total Coin: " + PlayerPrefs.GetInt("total_coin", 0);
+        highestLevel.text = "Highest Level: " + PlayerPrefs.GetInt("highest_level", 0);
+
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void LoadLevel(int stage)
     {
         this.stage = stage;
 
+        if (backgroundAudio.isPlaying)
+            backgroundAudio.Stop();
+        backgroundAudio.Play();
         SceneManager.LoadScene($"Stage_{stage}");
     }
 
     public void NextLevel()
     {
         if (stage < NumberOfStages)
+        {
+            PlayerPrefs.SetInt("highest_level", Mathf.Max(PlayerPrefs.GetInt("highest_level", 0), stage));
             LoadLevel(stage + 1);
+        }
         else
             GameOver();
     }
 
     public void ResetLevel(float delay)
     {
+        backgroundAudio.Stop();
+        missAudio.Play();
         Invoke(nameof(ResetLevel), delay);
     }
 
@@ -111,6 +141,7 @@ public class GameManager : MonoBehaviour
     {
         coins++;
         UpdateUI();
+        PlayerPrefs.SetInt("total_coin", PlayerPrefs.GetInt("total_coin", 0) + coins);
 
         if (coins == 100)
         {

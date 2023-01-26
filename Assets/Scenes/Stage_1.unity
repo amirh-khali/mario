@@ -348,7 +348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 883717603038346832, guid: 3b6b5c76e387c37488c983aef2e67c34, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 77
+      value: 80.08
       objectReference: {fileID: 0}
     - target: {fileID: 883717603038346832, guid: 3b6b5c76e387c37488c983aef2e67c34, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2745,7 +2745,7 @@ PrefabInstance:
     - target: {fileID: 6282406048747302785, guid: ad56612fc4c386443b51fe7816091520, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 6339062154244680120, guid: 06bedbf4f247027468f5d6c14ecd4e66, type: 3}
+      objectReference: {fileID: 841438207429839045, guid: 76cf0e35760fe2545aef7ff617e0ad1f, type: 3}
     - target: {fileID: 7344901015205276154, guid: ad56612fc4c386443b51fe7816091520, type: 3}
       propertyPath: m_Name
       value: MysteryBlock (2)

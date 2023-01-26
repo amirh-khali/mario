@@ -20,6 +20,8 @@ public class FlagPole : MonoBehaviour
 
     private IEnumerator LevelCompleteSequence(Transform player)
     {
+        GameManager.Instance.backgroundAudio.Stop();
+        GameManager.Instance.nextLevelAudio.Play();
         player.GetComponent<PlayerController>().enabled = false;
 
         yield return MoveTo(player, poleBottom.position);
@@ -29,7 +31,7 @@ public class FlagPole : MonoBehaviour
 
         player.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         GameManager.Instance.NextLevel();
     }
